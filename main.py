@@ -1,32 +1,31 @@
+from flask import Flask, render_template, request
 import calculator
 
-def get_int(prompt):
-    while True:
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    result = None
+
+    if request.method == "POST":
         try:
-            return int(input(prompt))
+            a = float(request.form["a"])
+            b = float(request.form["b"])
+            op = request.form["operation"]
+
+            if op == "add":
+                result = calculator.addition(a, b)
+            elif op == "subtract":
+                result = calculator.subtraction(a, b)
+            elif op == "divide":
+                result = calculator.division(a, b)
+            else:
+                result = "Unknown operation"
+
         except ValueError:
-            print("Invalid number. Try again.")
+            result = "Invalid input. Enter numbers only."
 
-while True:
-    operation = input("Operation (add/subtract/multiply/divide or exit): ").strip().lower()
+    return render_template("index.html", result=result)
 
-    if operation == "exit":
-        print("Goodbye!")
-        break
-
-    a = get_int("Enter first number: ")
-    b = get_int("Enter second number: ")
-
-    if operation == "add":
-        result = calculator.addition(a, b)
-    elif operation == "subtract":
-        result = calculator.subtraction(a, b)
-    elif operation =="multiply":
-        result = calculator.multiplication(a, b)
-    elif operation == "divide":
-        result = calculator.division(a, b)
-    else:
-        print("Unknown operation")
-        continue
-
-    print("Result:", result)
+if __name__ == "__main__":
+    app.run(debug=True)
