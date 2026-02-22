@@ -14,8 +14,7 @@ Try it online: [BasicMath Calculator](https://basicmath-l8gx.onrender.com)
 - Lightweight and perfect for portfolio showcase  
 
 ## Screenshot
-![BasicMath Screenshot](path/to/your/screenshot.png)  
-> Replace `path/to/your/screenshot.png` with the relative path if you add a screenshot in your repo.
+![BasicMath Screenshot](BASICMATH/basicmath.png)  
 
 ## Tech Stack
 - **Backend:** Python, Flask  
