@@ -9,32 +9,40 @@
     <h1>BasicMath Calculator</h1>
 
     <form method="POST">
+        <!-- Number displays -->
         <input type="text" name="a" id="displayA" readonly>
         <input type="text" name="b" id="displayB" readonly>
-    <div class="calculator">
-        <div class="numbers">
-            <button type="button" onclick="appendNumber(1)">1</button>
-            <button type="button" onclick="appendNumber(2)">2</button>
-            <button type="button" onclick="appendNumber(3)">3</button>
-            <button type="button" onclick="appendNumber(4)">4</button>
-            <button type="button" onclick="appendNumber(5)">5</button>
-            <button type="button" onclick="appendNumber(6)">6</button>
-            <button type="button" onclick="appendNumber(7)">7</button>
-            <button type="button" onclick="appendNumber(8)">8</button>
-            <button type="button" onclick="appendNumber(9)">9</button>
-            <button type="button" onclick="appendNumber(0)">0</button>
-            <button type="button" onclick="switchInput()">Switch</button>
-            <button type="button" onclick="clearInput()">C</button>
+
+        <!-- Hidden input for operation -->
+        <input type="hidden" name="operation" id="operationInput" value="add">
+
+        <!-- Number buttons -->
+        <div class="calculator">
+            <div class="numbers">
+                <button type="button" onclick="appendNumber(1)">1</button>
+                <button type="button" onclick="appendNumber(2)">2</button>
+                <button type="button" onclick="appendNumber(3)">3</button>
+                <button type="button" onclick="appendNumber(4)">4</button>
+                <button type="button" onclick="appendNumber(5)">5</button>
+                <button type="button" onclick="appendNumber(6)">6</button>
+                <button type="button" onclick="appendNumber(7)">7</button>
+                <button type="button" onclick="appendNumber(8)">8</button>
+                <button type="button" onclick="appendNumber(9)">9</button>
+                <button type="button" onclick="appendNumber(0)">0</button>
+                <button type="button" onclick="switchInput()">Switch</button>
+                <button type="button" onclick="clearInput()">C</button>
+            </div>
+
+            <!-- Operation buttons -->
+            <div class="operations">
+                <button type="button" onclick="setOperation('add')">+</button>
+                <button type="button" onclick="setOperation('subtract')">-</button>
+                <button type="button" onclick="setOperation('multiply')">×</button>
+                <button type="button" onclick="setOperation('divide')">÷</button>
+            </div>
         </div>
-    </div>
 
-        <select name="operation">
-            <option value="add">Add</option>
-            <option value="subtract">Subtract</option>
-            <option value="multiply">Multiply</option>
-            <option value="divide">Divide</option>
-        </select>
-
+        <!-- Submit button -->
         <button type="submit">=</button>
     </form>
 
@@ -42,4 +50,5 @@
         <h2>Result: {{ result }}</h2>
     {% endif %}
 </body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
