@@ -9,45 +9,44 @@
     <h1>BasicMath Calculator</h1>
 
     <form method="POST">
-        <!-- Number displays -->
-        <input type="text" name="a" id="displayA" readonly>
-        <input type="text" name="b" id="displayB" readonly>
+        <!-- Single display field -->
+        <input type="text" name="expression" id="display" readonly>
 
-        <!-- Hidden input for operation -->
-        <input type="hidden" name="operation" id="operationInput" value="add">
+        <!-- Hidden input for Flask (optional) -->
+        <input type="hidden" name="operation" id="operationInput">
 
         <div class="calculator">
 
-            <!-- Number buttons -->
-            <div class="numbers">
-                <button type="button" onclick="appendNumber(1)">1</button>
-                <button type="button" onclick="appendNumber(2)">2</button>
-                <button type="button" onclick="appendNumber(3)">3</button>
-                <button type="button" onclick="appendNumber(4)">4</button>
-                <button type="button" onclick="appendNumber(5)">5</button>
-                <button type="button" onclick="appendNumber(6)">6</button>
-                <button type="button" onclick="appendNumber(7)">7</button>
-                <button type="button" onclick="appendNumber(8)">8</button>
-                <button type="button" onclick="appendNumber(9)">9</button>
-                <button type="button" onclick="appendNumber(0)">0</button>
-                <button type="button" onclick="clearInput()">C</button>
-            </div>
+            <div class="calc-main">
+                <!-- Number buttons -->
+                <div class="numbers">
+                    <button type="button" onclick="appendNumber('1')">1</button>
+                    <button type="button" onclick="appendNumber('2')">2</button>
+                    <button type="button" onclick="appendNumber('3')">3</button>
+                    <button type="button" onclick="appendNumber('4')">4</button>
+                    <button type="button" onclick="appendNumber('5')">5</button>
+                    <button type="button" onclick="appendNumber('6')">6</button>
+                    <button type="button" onclick="appendNumber('7')">7</button>
+                    <button type="button" onclick="appendNumber('8')">8</button>
+                    <button type="button" onclick="appendNumber('9')">9</button>
+                    <button type="button" onclick="appendNumber('0')">0</button>
+                    <button type="button" onclick="clearInput()">C</button>
+                </div>
 
-            <!-- Operation buttons -->
-            <div class="operations">
-                <button type="button" onclick="setOperation('add')">+</button>
-                <button type="button" onclick="setOperation('subtract')">-</button>
-                <button type="button" onclick="setOperation('multiply')">×</button>
-                <button type="button" onclick="setOperation('divide')">÷</button>
+                <!-- Operation buttons -->
+                <div class="operations">
+                    <button type="button" onclick="appendOperation('+')">+</button>
+                    <button type="button" onclick="appendOperation('-')">-</button>
+                    <button type="button" onclick="appendOperation('*')">×</button>
+                    <button type="button" onclick="appendOperation('/')">÷</button>
+                </div>
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="equals">=</button>
-
+            <button type="button" class="equals" onclick="calculate()">=</button>
         </div>
     </form>
 
-    <!-- Result display -->
     <h2 id="resultDisplay">Result: {{ result if result is not none else "" }}</h2>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

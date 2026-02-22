@@ -1,3 +1,4 @@
+/* Base styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f0f2f5;
@@ -7,62 +8,69 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    padding: 10px;
 }
 
 h1 {
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: 600;
+    text-align: center;
 }
 
 form {
     background: #fff;
-    padding: 30px 40px;
+    padding: 20px 25px;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 400px; /* limits width on big screens */
 }
 
 input[readonly] {
-    width: 120px;
-    font-size: 24px;
-    text-align: center;
-    margin: 10px;
+    width: 100%;
+    font-size: 28px;
+    text-align: right;
+    margin-bottom: 15px;
     border-radius: 10px;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 12px;
     background: #f9f9f9;
-    transition: all 0.2s ease;
-}
-
-input[readonly]:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .calculator {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
+.calc-main {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Numbers grid */
 .numbers {
     display: grid;
-    grid-template-columns: repeat(3, 70px);
-    gap: 12px;
-    margin-bottom: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    flex: 3; /* take more space than operations */
 }
 
+/* Operations vertical stack */
 .operations {
-    display: grid;
-    grid-template-columns: repeat(4, 70px);
-    gap: 12px;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
 }
 
+/* Buttons */
 button {
     padding: 15px;
     font-size: 20px;
@@ -89,6 +97,7 @@ button:active {
     transform: translateY(1px);
 }
 
+/* Equals button */
 .equals {
     width: 100%;
     background-color: #4CAF50;
@@ -96,12 +105,49 @@ button:active {
     font-size: 24px;
     padding: 15px;
     border-radius: 15px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
+/* Result display */
 #resultDisplay {
     margin-top: 20px;
     font-size: 28px;
     color: #333;
     font-weight: 500;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .calc-main {
+        flex-direction: column; /* stack numbers and operations */
+        gap: 10px;
+    }
+
+    .numbers, .operations {
+        grid-template-columns: repeat(3, 1fr);
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .operations {
+        margin-top: 10px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    button {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    input[readonly] {
+        font-size: 22px;
+        padding: 10px;
+    }
+
+    .equals {
+        font-size: 22px;
+        padding: 12px;
+    }
 }

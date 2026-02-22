@@ -1,36 +1,43 @@
-let currentInput = "a"; // 'a' = first input, 'b' = second input
+let display = document.getElementById("display");
 
-// Allow clicking inputs to override active input
-document.getElementById("displayA").addEventListener("click", () => currentInput = "a");
-document.getElementById("displayB").addEventListener("click", () => currentInput = "b");
+function insertAtCursor(text) {
+    let start = display.selectionStart;
+    let end = display.selectionEnd;
+    let value = display.value;
 
-// Append number to current input
+    display.value = value.slice(0, start) + text + value.slice(end);
+    // Move cursor after inserted text
+    display.selectionStart = display.selectionEnd = start + text.length;
+}
+
+// Append numbers
 function appendNumber(num) {
-    const field = document.getElementById("display" + currentInput.toUpperCase());
-    field.value += num;
+    insertAtCursor(num);
+}
 
-    // Auto-switch from first input to second if first has value
-    if (currentInput === "a" && field.value.length > 0) {
-        currentInput = "b";
+// Append operations
+function appendOperation(op) {
+    // Prevent two operators in a row
+    let lastChar = display.value.slice(-1);
+    if (display.value && !"+-*/".includes(lastChar)) {
+        insertAtCursor(op);
     }
 }
 
-// Set operation for Python
-function setOperation(op) {
-    document.getElementById("operationInput").value = op;
-
-    // Highlight selected operation
-    document.querySelectorAll(".operations button").forEach(btn => btn.classList.remove("selected"));
-    document.querySelector(`.operations button[onclick="setOperation('${op}')"]`)?.classList.add("selected");
+// Clear input
+function clearInput() {
+    display.value = "";
+    document.getElementById("resultDisplay").textContent = "Result: 0";
 }
 
-// Clear inputs and show 0 immediately
-function clearInput() {
-    document.getElementById("displayA").value = "";
-    document.getElementById("displayB").value = "";
-    document.getElementById("operationInput").value = "c";
-    currentInput = "a";
-
-    // Update result display immediately
-    document.getElementById("resultDisplay").textContent = "Result: 0";
+// Calculate result
+function calculate() {
+    try {
+        let expr = display.value.replace("×", "*").replace("÷", "/");
+        let result = eval(expr);
+        document.getElementById("resultDisplay").textContent = "Result: " + result;
+        display.value = result;
+    } catch (e) {
+        document.getElementById("resultDisplay").textContent = "Error";
+    }
 }
