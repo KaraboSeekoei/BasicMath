@@ -14,7 +14,7 @@ Try it online: [BasicMath Calculator](https://basicmath-l8gx.onrender.com)
 - Lightweight and perfect for portfolio showcase  
 
 ## Screenshot
-![BasicMath Screenshot](BasicMath/basicmath.png)  
+![BasicMath Screenshot](basicmath.png)  
 
 ## Tech Stack
 - **Backend:** Python, Flask  
