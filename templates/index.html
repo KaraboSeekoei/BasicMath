@@ -16,8 +16,9 @@
         <!-- Hidden input for operation -->
         <input type="hidden" name="operation" id="operationInput" value="add">
 
-        <!-- Number buttons -->
         <div class="calculator">
+
+            <!-- Number buttons -->
             <div class="numbers">
                 <button type="button" onclick="appendNumber(1)">1</button>
                 <button type="button" onclick="appendNumber(2)">2</button>
@@ -29,7 +30,6 @@
                 <button type="button" onclick="appendNumber(8)">8</button>
                 <button type="button" onclick="appendNumber(9)">9</button>
                 <button type="button" onclick="appendNumber(0)">0</button>
-                <button type="button" onclick="switchInput()">Switch</button>
                 <button type="button" onclick="clearInput()">C</button>
             </div>
 
@@ -40,15 +40,15 @@
                 <button type="button" onclick="setOperation('multiply')">×</button>
                 <button type="button" onclick="setOperation('divide')">÷</button>
             </div>
-        </div>
 
-        <!-- Submit button -->
-        <button type="submit">=</button>
+            <!-- Submit button -->
+            <button type="submit" class="equals">=</button>
+
+        </div>
     </form>
 
-    {% if result is not none %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
+    <!-- Result display -->
+    <h2 id="resultDisplay">Result: {{ result if result is not none else "" }}</h2>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
