@@ -17,6 +17,8 @@ def index():
                 result = calculator.addition(a, b)
             elif op == "subtract":
                 result = calculator.subtraction(a, b)
+            elif op == "multiply":
+                result = calculator.multiplication(a, b)
             elif op == "divide":
                 result = calculator.division(a, b)
             else:

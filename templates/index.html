@@ -49,6 +49,7 @@
     {% if result is not none %}
         <h2>Result: {{ result }}</h2>
     {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
